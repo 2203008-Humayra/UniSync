@@ -29,6 +29,15 @@ def admin_login():
 def verify():
     return render_template("verify.html")
 
+@app.route("/complaint-form")
+def complaint_form():
+    return render_template("complaint_form.html")
+
+
+@app.route("/complaint-success")
+def complaint_success():
+    return render_template("complaint_success.html")
+
 @app.route("/track")
 def track():
     return render_template("track.html")
