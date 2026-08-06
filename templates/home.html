@@ -1,16 +1,14 @@
 {% extends "base.html" %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% block title %}
-    UniSync | Anonymous Student Feedback & Complaint System
-    {% endblock %}
-</head>
-<body>
 
-    {% block content %}
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+    
+{% block title %}
+UniSync | Anonymous Student Feedback & Complaint System
+{% endblock %}
+
+{% block content %}
 
 
 <!-- ================= HERO ================= -->
@@ -148,18 +146,28 @@
 </div>
 
 <div class="category-card">
+    <i class="fa-solid fa-money-check-dollar"></i>
+    <h3>Payments</h3>
+</div>
+
+<div class="category-card">
     <i class="fa-solid fa-bus"></i>
     <h3>Transport</h3>
 </div>
 
 <div class="category-card">
     <i class="fa-solid fa-utensils"></i>
-    <h3>Cafeteria</h3>
+    <h3>Food</h3>
 </div>
 
 <div class="category-card">
     <i class="fa-solid fa-wifi"></i>
     <h3>Internet & IT</h3>
+</div>
+
+<div class="category-card">
+    <i class="fa-solid fa-shield-halved"></i>
+    <h3>Security</h3>
 </div>
 
 <div class="category-card">
@@ -197,6 +205,3 @@
 
 
 {% endblock %}
-
-</body>
-</html>
