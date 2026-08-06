@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniSync | Anonymous Student Feedback & Complaint System</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+
+    
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+   
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header>
+    <nav class="navbar">
+        <div class="logo">
+            <h2><a href="{{ url_for('home') }}" class="logo">UniSync</a></h2>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="{{ url_for('home') }}" class="active">Home</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('faq') }}">FAQ</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            <li><a href="{{ url_for('admin_login') }}" class="login-btn">DSW Portal</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <span class="tagline">
+            Anonymous Student Feedback Platform
+        </span>
+
+        <h1>
+            Your Voice.<br>
+            Better Campus.
+        </h1>
+
+        <p>
+            Submit complaints, suggestions and appreciation securely and anonymously.
+            UniSync connects students directly with the Director of Student Welfare to
+            improve campus services and student life.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="{{ url_for('verify') }}" class="btn primary">
+                Submit Complaint
+            </a>
+
+            <a href="{{ url_for('track') }}" class="btn secondary">
+                Track Complaint
+            </a>
+        </div>
+
+    </div>
+
+    <div class="announcement-card">
+
+        <h3>
+            <i class="fa-solid fa-bullhorn"></i>
+            Latest Announcements
+        </h3>
+
+        <ul>
+            <li>Complaint portal is now open.</li>
+            <li>Campus Wi-Fi maintenance on Friday.</li>
+            <li>Updated university bus schedule.</li>
+        </ul>
+
+    </div>
+
+</section>
+
+<!-- ================= QUICK ACTIONS ================= -->
+
+<section class="quick-actions">
+
+    <h2>Quick Actions</h2>
+
+    <div class="action-container">
+
+        <a href="{{ url_for('verify', type='complaint') }}" class="action-card">
+            <i class="fa-solid fa-file-circle-plus"></i>
+            <h3>Complaint</h3>
+        </a>
+
+        <a href="{{ url_for('verify', type='suggestion') }}" class="action-card">
+            <i class="fa-solid fa-lightbulb"></i>
+            <h3>Suggestion</h3>
+        </a>
+
+        <a href="{{ url_for('verify', type='appreciation') }}" class="action-card">
+            <i class="fa-solid fa-heart"></i>
+            <h3>Appreciation</h3>
+        </a>
+
+        <a href="{{ url_for('track') }}" class="action-card">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <h3>Track Status</h3>
+        </a>
+
+    </div>
+
+</section>
+
+<!-- ================= WHY UNISYNC ================= -->
+
+<section class="features">
+
+    <h2>Why UniSync?</h2>
+
+    <div class="feature-grid">
+
+        <div class="feature-card">
+            <i class="fa-solid fa-user-secret"></i>
+            <h3>Anonymous</h3>
+            <p>Your identity stays private.</p>
+        </div>
+
+        <div class="feature-card">
+            <i class="fa-solid fa-shield-halved"></i>
+            <h3>Secure</h3>
+            <p>Protected complaint management.</p>
+        </div>
+
+        <div class="feature-card">
+            <i class="fa-solid fa-chart-line"></i>
+            <h3>Track Progress</h3>
+            <p>Monitor complaint status anytime.</p>
+        </div>
+
+        <div class="feature-card">
+            <i class="fa-solid fa-building-columns"></i>
+            <h3>Direct to DSW</h3>
+            <p>Reach the Director of Student Welfare.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= CATEGORIES ================= -->
+
+<section class="categories">
+
+    <h2>Complaint Categories</h2>
+
+    <div class="category-card">
+    <i class="fa-solid fa-graduation-cap"></i>
+    <h3>Academic</h3>
+</div>
+
+<div class="category-card">
+    <i class="fa-solid fa-building"></i>
+    <h3>Hostel</h3>
+</div>
+
+<div class="category-card">
+    <i class="fa-solid fa-bus"></i>
+    <h3>Transport</h3>
+</div>
+
+<div class="category-card">
+    <i class="fa-solid fa-utensils"></i>
+    <h3>Cafeteria</h3>
+</div>
+
+<div class="category-card">
+    <i class="fa-solid fa-wifi"></i>
+    <h3>Internet & IT</h3>
+</div>
+
+<div class="category-card">
+    <i class="fa-solid fa-layer-group"></i>
+    <h3>Others</h3>
+</div>
+
+</section>
+
+<!-- ================= STATISTICS ================= -->
+
+<section class="stats">
+
+    <div class="stat-box">
+        <h2>120+</h2>
+        <p>Complaints Resolved</p>
+    </div>
+
+    <div class="stat-box">
+        <h2>25</h2>
+        <p>Pending Cases</p>
+    </div>
+
+    <div class="stat-box">
+        <h2>45</h2>
+        <p>Suggestions Received</p>
+    </div>
+
+    <div class="stat-box">
+        <h2>3 Days</h2>
+        <p>Average Response Time</p>
+    </div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <h3>UniSync</h3>
+
+    <p>
+        Anonymous Student Feedback & Complaint Management System
+    </p>
+
+    <div class="footer-links">
+        <a href="{{ url_for('about') }}">About</a>
+        <a href="{{ url_for('faq') }}">FAQ</a>
+        <a href="{{ url_for('contact') }}">Contact</a>
+    </div>
+
+    <p>&copy; 2026 UniSync. All Rights Reserved.</p>
+
+</footer>
+
+</body>
+</html>
