@@ -52,9 +52,9 @@ UniSync | Anonymous Student Feedback & Complaint System
         </h3>
 
         <ul>
-            <li>Complaint portal is now open.</li>
-            <li>Campus Wi-Fi maintenance on Friday.</li>
-            <li>Updated university bus schedule.</li>
+            {% for announcement in announcements %}
+                <li>{{ announcement["message"] }}</li>
+            {% endfor %}
         </ul>
 
     </div>

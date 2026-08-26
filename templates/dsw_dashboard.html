@@ -1,0 +1,28 @@
+{% extends "base.html" %} {% block title %} DSW Dashboard - UniSync {% endblock
+%} {% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dsw.css') }}" />
+{% endblock %} {% block content %}
+
+<div class="dashboard-container">
+  <div class="dashboard-card">
+    <h2>DSW Dashboard</h2>
+    <p class="dashboard-subtitle">Manage homepage announcements</p>
+
+    <form method="POST" action="{{ url_for('add_announcement') }}">
+      <label>New Announcement</label>
+
+      <input
+        type="text"
+        name="announcement"
+        placeholder="Enter announcement"
+        required
+      />
+
+      <button type="submit">Add Announcement</button>
+    </form>
+
+    <a href="{{ url_for('logout') }}" class="logout-btn"> Logout </a>
+  </div>
+</div>
+
+{% endblock %}
