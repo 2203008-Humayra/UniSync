@@ -1,0 +1,162 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #ffffff;
+    color: #222222;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1000;
+    background:#ddd(255,255,255,.95);
+    backdrop-filter:blur(12px);
+    box-shadow:0 5px 20px rgba(0,0,0,.05);
+}
+
+.navbar{
+    width:90%;
+    margin:auto;
+    height:80px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo h2{
+    color:#0F2348;
+    font-size:30px;
+    font-weight:700;
+}
+
+.logo{
+    color:#0F2348;
+    font-size:30px;
+    font-weight:700;
+}
+
+.nav-links{
+    display:flex;
+    gap:35px;
+    align-items:center;
+}
+
+.nav-links a{
+    color:#222;
+    font-weight:500;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:#0F2348;
+}
+
+.login-btn{
+
+    padding:12px 24px;
+    border:2px solid #0F2348;
+    border-radius:40px;
+
+    color:#0F2348 !important;
+    transition:.3s;
+}
+
+.login-btn:hover{
+
+    background:#0F2348;
+    color:#fff !important;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    background: #081629;
+    color: #ffffff;
+    text-align: center;
+    padding: 70px 8% 40px;
+}
+
+footer h3 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+footer p {
+    color: #cccccc;
+    line-height: 1.8;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    margin: 35px 0;
+}
+
+.footer-links a {
+    color: #ffffff;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: #8ab6ff;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        flex-direction: column;
+
+        height: auto;
+
+        padding: 20px 0;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+
+        gap: 18px;
+
+        margin-top: 20px;
+    }
+
+    .footer-links {
+        flex-direction: column;
+
+        gap: 15px;
+    }
+}

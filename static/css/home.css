@@ -98,23 +98,26 @@ header{
    HERO
 =========================== */
 
-.hero{
-
-    height:100vh;
+.hero {
+    min-height: 100vh;
 
     background:
-    linear-gradient(rgba(8,22,47,.65),
-    rgba(8,22,47,.65)),
+    linear-gradient(
+        rgba(8,22,47,.65),
+        rgba(8,22,47,.65)
+    ),
     url("../images/ruet.jpeg");
 
-    background-size:cover;
-    background-position:center;
+    background-size: cover;
+    background-position: center;
 
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-    padding:0 8%;
+    /* 80px = fixed navbar height */
+    margin-top: 80px;
+    padding: 0 8%;
 }
 
 .hero-content{

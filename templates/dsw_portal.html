@@ -1,0 +1,39 @@
+{% extends "base.html" %} {% block title %}DSW Login - UniSync{% endblock %} {%
+block styles %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/dsw_portal.css') }}"
+/>
+{% endblock %} {% block content %}
+
+<div class="login-container">
+  <div class="login-box">
+    <h2>DSW Login</h2>
+    <p>Director of Student Welfare Portal</p>
+     
+    {% if error %}
+    <p class="error-message">{{ error }}</p>
+    {% endif %}
+    <form method="POST">
+      <label>Username</label>
+      <input
+        type="text"
+        name="username"
+        placeholder="Enter username"
+        required
+      />
+
+      <label>Password</label>
+      <input
+        type="password"
+        name="password"
+        placeholder="Enter password"
+        required
+      />
+
+      <button type="submit">Login</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
