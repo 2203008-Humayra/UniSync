@@ -1,0 +1,314 @@
+.verify-container {
+    position: relative;
+    overflow: hidden;
+
+    min-height: 75vh;
+    margin-top: 80px;
+    padding: 70px 20px 90px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #021a47;
+}
+
+/* Circular glow surrounding the glass box */
+.verify-container::before {
+    content: "";
+
+    position: absolute;
+
+    width: 650px;
+    height: 650px;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background: rgba(225, 235, 255, 0.12);
+
+    filter: blur(75px);
+
+    pointer-events: none;
+}
+
+/* Softer inner glow */
+.verify-container::after {
+    content: "";
+
+    position: absolute;
+
+    width: 430px;
+    height: 430px;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background: rgba(190, 210, 245, 0.08);
+
+    filter: blur(55px);
+
+    pointer-events: none;
+}
+
+.verify-card {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    max-width: 520px;
+
+    padding: 45px;
+
+    /* Transparent glass */
+    background: rgba(255, 255, 255, 0.055);
+
+    /* Soft glowing glass border */
+    border: 1px solid rgba(205, 222, 250, 0.30);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.30),
+        0 0 25px rgba(205, 222, 250, 0.09),
+        0 0 60px rgba(205, 222, 250, 0.05),
+        inset 0 0 18px rgba(255, 255, 255, 0.025);
+
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+/* Soft highlight around the glass border */
+.verify-card::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    border-radius: 18px;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    pointer-events: none;
+}
+
+/* Small top highlight */
+.verify-card::after {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 12%;
+    right: 12%;
+
+    height: 1px;
+
+    background: rgba(255, 255, 255, 0.45);
+
+    opacity: 0.55;
+}
+
+.verify-card:hover {
+    border-color: rgba(215, 228, 250, 0.40);
+
+    box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.30),
+        0 0 30px rgba(205, 222, 250, 0.11),
+        0 0 65px rgba(205, 222, 250, 0.06),
+        inset 0 0 18px rgba(255, 255, 255, 0.03);
+}
+
+.verify-header {
+    margin-bottom: 32px;
+}
+
+.verify-label {
+    display: inline-block;
+
+    margin: 0 0 12px;
+
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+
+    color: #91b6ed;
+}
+
+.verify-header h2 {
+    margin: 0 0 12px;
+
+    font-size: 31px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+
+    color: #ffffff;
+}
+
+.verify-header p {
+    max-width: 420px;
+
+    margin: 0;
+
+    font-size: 14px;
+    line-height: 1.7;
+
+    color: rgba(255, 255, 255, 0.62);
+}
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 9px;
+
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+
+    color: rgba(255, 255, 255, 0.78);
+}
+
+.form-group input {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 14px 15px;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 9px;
+
+    outline: none;
+
+    font-size: 14px;
+
+    color: #ffffff;
+
+    background: rgba(255, 255, 255, 0.065);
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.form-group input::placeholder {
+    color: rgba(255, 255, 255, 0.30);
+}
+
+.form-group input:focus {
+    border-color: rgba(150, 180, 225, 0.70);
+
+    background: rgba(255, 255, 255, 0.085);
+
+    box-shadow:
+        0 0 0 3px rgba(80, 120, 180, 0.08),
+        0 0 20px rgba(100, 140, 200, 0.10);
+}
+
+.verify-card button {
+    position: relative;
+
+    width: 100%;
+
+    padding: 14px;
+
+    border: 1px solid rgba(105, 143, 200, 0.55);
+    border-radius: 9px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    color: #ffffff;
+
+    background: #022a5e;
+
+    cursor: pointer;
+
+    /* Subtle glow */
+    box-shadow:
+        0 0 8px rgba(65, 105, 165, 0.20),
+        0 8px 25px rgba(20, 50, 100, 0.25);
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.verify-card button:hover {
+    background: #3869a6;
+
+    border-color: rgba(135, 166, 215, 0.70);
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 0 12px rgba(70, 110, 170, 0.25),
+        0 10px 30px rgba(20, 50, 100, 0.32);
+}
+
+.verify-card button:active {
+    transform: translateY(0);
+}
+
+.verify-note {
+    margin: 20px 0 0;
+
+    text-align: center;
+
+    font-size: 11px;
+    line-height: 1.6;
+
+    color: rgba(255, 255, 255, 0.38);
+}
+
+.verify-error {
+    margin: 0 0 20px;
+
+    padding: 11px 13px;
+
+    border: 1px solid rgba(255, 120, 120, 0.25);
+    border-radius: 8px;
+
+    font-size: 13px;
+
+    color: #ffb8b8;
+
+    background: rgba(255, 80, 80, 0.08);
+}
+
+@media (max-width: 600px) {
+
+    .verify-container {
+        padding: 50px 18px 70px;
+    }
+
+    .verify-card {
+        padding: 32px 25px;
+    }
+
+    .verify-header h2 {
+        font-size: 26px;
+    }
+}
+
+
+

@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block title %}All Complaints - UniSync{% endblock %}
+
+{% block styles %}
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/all_complaints.css') }}"
+>
+{% endblock %}
+
+{% block content %}
+
+<div class="all-complaints-container">
+
+    <div class="all-complaints-card">
+
+        <div class="page-header">
+            <div>
+                <p class="page-label">DSW PORTAL</p>
+                <h2>All Complaints</h2>
+                <p>
+                    Review all anonymously submitted complaints.
+                </p>
+            </div>
+
+            <a href="{{ url_for('dsw_dashboard') }}" class="back-btn">
+                Back to Dashboard
+            </a>
+        </div>
+
+        {% if complaints %}
+
+        <div class="complaint-list">
+
+            {% for complaint in complaints %}
+
+            <div class="complaint-item">
+
+                <div class="complaint-info">
+
+                    <div class="complaint-main">
+                        <strong>
+                            Complaint #{{ complaint.complaint_id }}
+                        </strong>
+
+                        <span>
+                            {{ complaint.category }}
+                        </span>
+                    </div>
+
+                    <p>
+                        {{ complaint.description }}
+                    </p>
+
+                    <small>
+                        Submitted:
+                        {{ complaint.created_at.strftime('%d %B %Y, %I:%M %p') }}
+                    </small>
+
+                </div>
+
+                <div class="complaint-actions">
+
+                    <span class="status {{ complaint.status|lower|replace(' ', '-') }}">
+                        {{ complaint.status }}
+                    </span>
+
+                    <a
+                        href="{{ url_for('view_complaint', complaint_id=complaint.complaint_id) }}"
+                        class="view-btn"
+                    >
+                        View →
+                    </a>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <div class="empty-state">
+            <p>No complaints submitted yet.</p>
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Student Verification - UniSync{% endblock %}
+
+{% block styles %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/verify.css') }}"
+>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="verify-container">
+
+    <div class="verify-card">
+
+        <div class="verify-header">
+
+            <p class="verify-label">UNISYNC</p>
+
+            <h2>Student Verification</h2>
+
+            <p>
+                Verify your RUET student email to continue.
+                Your identity will not be attached to your complaint.
+            </p>
+
+        </div>
+
+        {% if error %}
+        <p class="verify-error">{{ error }}</p>
+        {% endif %}
+
+        <form method="POST" action="{{ url_for('verify') }}">
+
+            <div class="form-group">
+
+                <label for="email">RUET Student Email</label>
+
+                <input
+                    type="text"
+                    id="email"
+                    name="email"
+                    placeholder="your@student.ruet.ac.bd"
+                    required
+                >
+
+            </div>
+
+            <button type="submit">
+                Continue
+            </button>
+
+        </form>
+
+        <p class="verify-note">
+            Only a valid RUET student email can be used for verification.
+        </p>
+
+    </div>
+
+</div>
+
+{% endblock %}
+

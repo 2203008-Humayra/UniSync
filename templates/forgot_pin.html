@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block title %}Forgot PIN - UniSync{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/student_login.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="student-login-container">
+
+    <div class="student-login-card">
+
+        <div class="student-login-header">
+            <p class="student-login-label">UNISYNC</p>
+
+            <h2>Reset Your PIN</h2>
+
+            <p>
+                Enter your RUET student email and existing nickname
+                to create a new PIN.
+            </p>
+        </div>
+
+        {% if error %}
+        <p class="student-login-error">
+            {{ error }}
+        </p>
+        {% endif %}
+
+        <form method="POST" action="{{ url_for('forgot_pin') }}">
+
+            <div class="form-group">
+                <label for="email">RUET Student Email</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="your@student.ruet.ac.bd"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="nickname">Existing Nickname</label>
+
+                <input
+                    type="text"
+                    id="nickname"
+                    name="nickname"
+                    placeholder="Enter your existing nickname"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="new_pin">New PIN</label>
+
+                <input
+                    type="password"
+                    id="new_pin"
+                    name="new_pin"
+                    placeholder="Enter a new PIN"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="confirm_pin">Confirm New PIN</label>
+
+                <input
+                    type="password"
+                    id="confirm_pin"
+                    name="confirm_pin"
+                    placeholder="Re-enter your new PIN"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="forgot-pin-btn">
+                Reset PIN
+            </button>
+
+        </form>
+
+        <p class="student-login-note">
+            Your nickname and anonymous identity will remain unchanged.
+        </p>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,261 @@
+.all-complaints-container {
+    position: relative;
+    overflow: hidden;
+
+    min-height: 75vh;
+    margin-top: 80px;
+    padding: 60px 20px 80px;
+
+    background: #0c1a36;
+}
+
+.all-complaints-container::before {
+    content: "";
+    position: absolute;
+
+    width: 700px;
+    height: 180px;
+
+    top: 12%;
+    left: -150px;
+
+    background: rgba(82, 139, 218, 0.18);
+
+    filter: blur(70px);
+    transform: rotate(-25deg);
+
+    pointer-events: none;
+}
+
+.all-complaints-container::after {
+    content: "";
+    position: absolute;
+
+    width: 600px;
+    height: 160px;
+
+    bottom: 8%;
+    right: -120px;
+
+    background: rgba(62, 117, 200, 0.14);
+
+    filter: blur(70px);
+    transform: rotate(-25deg);
+
+    pointer-events: none;
+}
+
+.all-complaints-card {
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+    max-width: 1050px;
+
+    margin: 0 auto;
+    padding: 40px;
+
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 16px;
+
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.page-label {
+    margin: 0 0 8px;
+
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.page-header h2 {
+    margin: 0 0 8px;
+
+    font-size: 28px;
+    font-weight: 600;
+
+    color: #ffffff;
+}
+
+.page-header p {
+    margin: 0;
+
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.back-btn {
+    flex-shrink: 0;
+
+    padding: 10px 16px;
+
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 8px;
+
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+
+    font-size: 13px;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    transition: 0.2s ease;
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.11);
+    color: #ffffff;
+}
+
+.complaint-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.complaint-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 30px;
+    padding: 20px 22px;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.055);
+}
+
+.complaint-info {
+    min-width: 0;
+}
+
+.complaint-main {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    margin-bottom: 8px;
+}
+
+.complaint-main strong {
+    font-size: 15px;
+    color: #ffffff;
+}
+
+.complaint-main span {
+    padding: 4px 9px;
+
+    border-radius: 5px;
+
+    font-size: 11px;
+
+    color: rgba(255, 255, 255, 0.65);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.complaint-info p {
+    margin: 0 0 8px;
+
+    max-width: 700px;
+
+    font-size: 13px;
+    line-height: 1.5;
+
+    color: rgba(255, 255, 255, 0.68);
+}
+
+.complaint-info small {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.complaint-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    flex-shrink: 0;
+}
+
+.status {
+    padding: 6px 10px;
+
+    border-radius: 6px;
+
+    font-size: 11px;
+    font-weight: 500;
+
+    color: rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.view-btn {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    transition: 0.2s ease;
+}
+
+.view-btn:hover {
+    color: #ffffff;
+}
+
+.empty-state {
+    padding: 30px;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.empty-state p {
+    margin: 0;
+
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+@media (max-width: 700px) {
+
+    .all-complaints-card {
+        padding: 25px;
+    }
+
+    .page-header {
+        flex-direction: column;
+    }
+
+    .complaint-item {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .complaint-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+}

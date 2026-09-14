@@ -1,28 +1,146 @@
-{% extends "base.html" %} {% block title %} DSW Dashboard - UniSync {% endblock
-%} {% block styles %}
+{% extends "base.html" %}
+
+{% block title %}DSW Dashboard - UniSync{% endblock %}
+
+{% block styles %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/dsw.css') }}" />
-{% endblock %} {% block content %}
+{% endblock %}
+
+{% block content %}
 
 <div class="dashboard-container">
-  <div class="dashboard-card">
-    <h2>DSW Dashboard</h2>
-    <p class="dashboard-subtitle">Manage homepage announcements</p>
 
-    <form method="POST" action="{{ url_for('add_announcement') }}">
-      <label>New Announcement</label>
+    <div class="dashboard-card">
 
-      <input
-        type="text"
-        name="announcement"
-        placeholder="Enter announcement"
-        required
-      />
+        <!-- Dashboard Header -->
+        <div class="dashboard-header">
+            <div>
+                <p class="dashboard-label">DIRECTOR OF STUDENT WELFARE</p>
+                <h2>DSW Dashboard</h2>
+                <p class="dashboard-subtitle">
+                    Review student concerns, manage complaints, and keep students informed.
+                </p>
+            </div>
+        </div>
 
-      <button type="submit">Add Announcement</button>
-    </form>
 
-    <a href="{{ url_for('logout') }}" class="logout-btn"> Logout </a>
-  </div>
+        <!-- Main Dashboard Actions -->
+        <div class="dashboard-actions">
+
+            <a href="#" class="dashboard-action">
+                <div class="action-icon"></div>
+                <div>
+                    <h3>Complaints</h3>
+                    <p>Review and manage anonymous student complaints.</p>
+                </div>
+
+            </a>
+
+            <a href="#" class="dashboard-action">
+                <div class="action-icon"></div>
+                <div>
+                    <h3>Suggestions</h3>
+                    <p>View suggestions submitted by students.</p>
+                </div>
+            </a>
+
+            <a href="#" class="dashboard-action">
+                <div class="action-icon"></div>
+                <div>
+                    <h3>Appreciation</h3>
+                    <p>View positive feedback from students.</p>
+                </div>
+            </a>
+
+        </div>
+
+
+        <!-- Recent Complaints -->
+        <div class="dashboard-section">
+
+            <div class="section-heading">
+                <div>
+                    <h3>Recent Complaints</h3>
+                    <p class="section-description">
+                        Review the latest student submissions.
+                    </p>
+                </div>
+
+                <a href="{{ url_for('dsw_complaints') }}" class="view-all-btn">View All →</a>
+            </div>
+
+            <div class="complaint-list">
+    {% if complaints %}
+        {% for complaint in complaints %}
+            <div class="complaint-item">
+                <div>
+                    <strong>Complaint #{{ complaint.complaint_id }}</strong>
+                    <span>{{ complaint.category }}</span>
+                </div>
+
+                <span class="status {{ complaint.status|lower|replace(' ', '-') }}">
+                    {{ complaint.status }}
+                </span>
+
+                <a href="{{ url_for('view_complaint', complaint_id=complaint.complaint_id) }}" class="complaint-view">View →</a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="no-complaints">No complaints submitted yet.</p>
+    {% endif %}
+</div>
+
+        </div>
+
+
+        <!-- Homepage Announcements -->
+        <div class="dashboard-section announcement-section">
+
+            <div class="section-heading">
+                <div>
+                    <h3>Homepage Announcements</h3>
+                    <p class="section-description">
+                        Publish important announcements for students.
+                    </p>
+                </div>
+            </div>
+
+            <form method="POST" action="{{ url_for('add_announcement') }}">
+
+                <label for="announcement">New Announcement</label>
+
+                <input
+                    type="text"
+                    id="announcement"
+                    name="announcement"
+                    placeholder="Write an announcement..."
+                    required
+                />
+
+                <button type="submit">
+                    + Add Announcement
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- Account Controls -->
+        <div class="dashboard-footer">
+
+            <a href="#" class="change-password-btn">
+                Change Password
+            </a>
+
+            <a href="{{ url_for('logout') }}" class="logout-btn">
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+
 </div>
 
 {% endblock %}

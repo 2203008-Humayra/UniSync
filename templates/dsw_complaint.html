@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}Complaint Details - UniSync{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dsw_complaint.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="complaint-details-container">
+
+    <div class="complaint-details-card">
+
+        <div class="details-header">
+            <div>
+                <p class="details-label">ANONYMOUS COMPLAINT</p>
+                <h2>Complaint Details</h2>
+            </div>
+
+            <span class="status">
+                {{ complaint.status }}
+            </span>
+        </div>
+
+        <div class="details-info">
+
+            <div class="info-item">
+                <span>Complaint ID</span>
+                <strong>{{ complaint.complaint_id }}</strong>
+            </div>
+
+            <div class="info-item">
+                <span>Category</span>
+                <strong>{{ complaint.category }}</strong>
+            </div>
+
+            <div class="info-item">
+                <span>Submitted</span>
+                <strong>{{ complaint.created_at.strftime('%d %B %Y, %I:%M %p') }}</strong>
+            </div>
+
+        </div>
+
+        <div class="description-section">
+    <h3>Complaint</h3>
+
+    <div class="description-box">
+        {{ complaint.description }}
+    </div>
+</div>
+
+<div class="status-section">
+    <h3>Update Status</h3>
+
+    <form
+        method="POST"
+        action="{{ url_for('update_complaint_status', complaint_id=complaint.complaint_id) }}"
+    >
+        <select name="status" required>
+            <option value="Pending Review"
+                {% if complaint.status == "Pending Review" %}selected{% endif %}>
+                Pending Review
+            </option>
+
+            <option value="Under Investigation"
+                {% if complaint.status == "Under Investigation" %}selected{% endif %}>
+                Under Investigation
+            </option>
+
+            <option value="Resolved"
+                {% if complaint.status == "Resolved" %}selected{% endif %}>
+                Resolved
+            </option>
+
+            <option value="Rejected"
+                {% if complaint.status == "Rejected" %}selected{% endif %}>
+                Rejected
+            </option>
+
+        </select>
+
+        <button type="submit">Update Status</button>
+    </form>
+</div>
+
+<a href="{{ url_for('dsw_dashboard') }}" class="back-btn">
+    ← Back to Dashboard
+</a>
+
+    </div>
+
+</div>
+
+{% endblock %}

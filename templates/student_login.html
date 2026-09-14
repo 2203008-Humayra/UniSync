@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Student Login - UniSync{% endblock %}
+
+{% block styles %}
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/student_login.css') }}"
+>
+{% endblock %}
+
+{% block content %}
+
+<div class="student-login-container">
+
+    <div class="student-login-card">
+
+        <div class="student-login-header">
+
+            <p class="student-login-label">UNISYNC</p>
+
+            <h2>Welcome Back</h2>
+
+            <p>
+                Enter your PIN to access your anonymous student account.
+            </p>
+
+        </div>
+
+        {% if error %}
+        <p class="student-login-error">{{ error }}</p>
+        {% endif %}
+
+        <form method="POST">
+
+            <div class="form-group">
+
+                <label for="pin">PIN</label>
+
+                <input
+                    type="password"
+                    id="pin"
+                    name="pin"
+                    placeholder="Enter your PIN"
+                    required
+                >
+
+            </div>
+
+            <button type="submit">
+                Continue
+            </button>
+
+        </form>
+
+        <p class="forgot-pin">
+            <a href="{{ url_for('forgot_pin') }}">Forgot your PIN?</a>
+        </p>
+
+        <p class="student-login-note">
+            Your real identity is not attached to your complaints.
+        </p>
+
+    </div>
+
+</div>
+
+{% endblock %}

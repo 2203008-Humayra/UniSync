@@ -1,0 +1,149 @@
+.identity-container {
+    min-height: 75vh;
+    padding: 120px 20px 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 18% 15%,
+            rgba(180, 160, 255, 0.42) 0%,
+            rgba(110, 90, 210, 0.25) 18%,
+            rgba(45, 50, 145, 0.16) 35%,
+            transparent 58%
+        ),
+        radial-gradient(
+            circle at 80% 85%,
+            rgba(2, 42, 94, 0.8) 0%,
+            transparent 50%
+        ),
+        linear-gradient(
+            135deg,
+            #021a47 0%,
+            #071b50 45%,
+            #011536 100%
+        );
+}
+
+.identity-card {
+    width: 100%;
+    max-width: 460px;
+    padding: 42px 40px;
+    box-sizing: border-box;
+
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 20px;
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow: 0 0 35px rgba(255, 255, 255, 0.12);
+
+    color: #ffffff;
+}
+
+.identity-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.identity-label {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 13px;
+    letter-spacing: 3px;
+    margin: 0 0 8px;
+}
+
+.identity-header h2 {
+    color: #ffffff;
+    font-size: 28px;
+    margin: 0 0 12px;
+}
+
+.identity-header p {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    color: #ffffff;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    display: block;
+    width: 100%;
+    height: 46px;
+    padding: 0 14px;
+    box-sizing: border-box;
+
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 9px;
+
+    color: #ffffff;
+    font-size: 14px;
+    outline: none;
+}
+
+.form-group input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.identity-card button {
+    display: block;
+    width: 100%;
+    height: 46px;
+    margin-top: 8px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: #012049;
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+
+    box-shadow:
+        0 0 8px rgba(255, 255, 255, 0.18),
+        0 0 18px rgba(9, 73, 155, 0.7);
+
+    transition: box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.identity-card button:hover {
+    background: #033875;
+
+    box-shadow:
+        0 0 10px rgba(255, 255, 255, 0.25),
+        0 0 24px rgba(2, 42, 94, 0.9);
+}
+
+.identity-note {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 12px;
+    line-height: 1.5;
+    text-align: center;
+    margin: 20px 0 0;
+}
+
+.identity-error {
+    color: #ffb8b8;
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
