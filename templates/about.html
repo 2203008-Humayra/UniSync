@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block title %}About - UniSync{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<main class="about-page">
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="hero-content">
+            <p class="section-label">ABOUT UNISYNC</p>
+
+            <h1>Connecting Students,<br>Creating Change.</h1>
+
+            <p class="hero-text">
+                UniSync is an anonymous student feedback and complaint
+                management system designed to help students share their
+                concerns safely and help the university build a better
+                environment.
+            </p>
+        </div>
+    </section>
+
+
+    <!-- About UniSync -->
+    <section class="about-section">
+        <div class="section-container">
+
+            <div class="section-heading">
+                <p class="section-label">WHO WE ARE</p>
+                <h2>What is UniSync?</h2>
+            </div>
+
+            <div class="about-content">
+                <p>
+                    UniSync provides students with a simple and secure way
+                    to communicate their feedback, suggestions and complaints.
+                    The platform focuses on making student voices heard while
+                    maintaining privacy and ease of use.
+                </p>
+
+                <p>
+                    By bringing feedback and communication into one platform,
+                    UniSync helps create a stronger connection between students
+                    and the university administration.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- Mission & Vision -->
+    <section class="mission-section">
+        <div class="section-container">
+
+            <div class="info-grid">
+
+                <div class="info-card">
+                    <div class="icon-box">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+
+                    <h3>Our Mission</h3>
+
+                    <p>
+                        To provide students with a safe, accessible and
+                        anonymous platform where they can freely share their
+                        experiences, concerns and ideas.
+                    </p>
+                </div>
+
+
+                <div class="info-card">
+                    <div class="icon-box">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+
+                    <h3>Our Vision</h3>
+
+                    <p>
+                        To build a more responsive university environment
+                        where student feedback contributes to meaningful
+                        improvements and positive change.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- Why UniSync -->
+    <section class="why-section">
+        <div class="section-container">
+
+            <div class="section-heading centered">
+                <p class="section-label">WHY UNISYNC?</p>
+                <h2>Built Around Student Voices</h2>
+            </div>
+
+            <div class="feature-grid">
+
+                <div class="feature-card">
+                    <i class="fa-solid fa-user-secret"></i>
+                    <h3>Anonymous</h3>
+                    <p>
+                        Share your feedback and concerns without unnecessary
+                        exposure of your identity.
+                    </p>
+                </div>
+
+
+                <div class="feature-card">
+                    <i class="fa-solid fa-comments"></i>
+                    <h3>Easy Communication</h3>
+                    <p>
+                        A simple platform for students to communicate their
+                        experiences, suggestions and complaints.
+                    </p>
+                </div>
+
+
+                <div class="feature-card">
+                    <i class="fa-solid fa-lightbulb"></i>
+                    <h3>Meaningful Change</h3>
+                    <p>
+                        Student feedback can help identify issues and support
+                        improvements within the university community.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+{% endblock %}
