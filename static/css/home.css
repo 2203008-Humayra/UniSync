@@ -207,7 +207,8 @@ header{
 }
 
 .secondary:hover{
-
+    transform:translateY(-4px);
+    box-shadow:0 15px 35px rgba(255,255,255,.25);
     background:#fff;
     color:#0F2348;
 }

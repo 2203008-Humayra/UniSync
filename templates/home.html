@@ -38,7 +38,7 @@ UniSync | Anonymous Student Feedback & Complaint System
             </a>
 
             <a href="{{ url_for('track') }}" class="btn secondary">
-                Track Complaint
+                View Complaints
             </a>
         </div>
 
@@ -74,7 +74,7 @@ UniSync | Anonymous Student Feedback & Complaint System
             <h3>Complaint</h3>
         </a>
 
-        <a href="{{ url_for('verify', type='suggestion') }}" class="action-card">
+        <a href="{{ url_for('suggestion_form') }}" class="action-card">
             <i class="fa-solid fa-lightbulb"></i>
             <h3>Suggestion</h3>
         </a>
@@ -182,12 +182,12 @@ UniSync | Anonymous Student Feedback & Complaint System
 <section class="stats">
 
     <div class="stat-box">
-        <h2>120+</h2>
+        <h2>{{ stats.resolved_count }}</h2>
         <p>Complaints Resolved</p>
     </div>
 
     <div class="stat-box">
-        <h2>25</h2>
+        <h2>{{ stats.pending_count }}</h2>
         <p>Pending Cases</p>
     </div>
 
@@ -202,6 +202,5 @@ UniSync | Anonymous Student Feedback & Complaint System
     </div>
 
 </section>
-
 
 {% endblock %}

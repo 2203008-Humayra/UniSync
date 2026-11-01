@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}Community Complaints - UniSync{% endblock %}
+{% block styles %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/track.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="community-feed">
+
+    <div class="feed-header">
+        <h1>Community Complaints</h1>
+        <p>
+            See what students are reporting and share whether you agree
+            with the concern.
+        </p>
+    </div>
+
+    <div class="complaint-feed">
+
+        {% for complaint in complaints %}
+
+        <div class="complaint-post">
+
+            <div class="post-header">
+                <div>
+                    <h3>{{ complaint["nickname"] }}</h3>
+                    <span>{{ complaint["category"] }}</span>
+                </div>
+
+                <small>
+                    {{ complaint["created_at"].strftime("%d %b %Y") }}
+                </small>
+            </div>
+
+            <div class="post-content">
+                <p>{{ complaint["description"] }}</p>
+            </div>
+
+            <div class="post-footer">
+
+                <span class="status {{ complaint['status']|lower }}">
+                    {{ complaint["status"] }}
+                </span>
+
+                <div class="reactions">
+
+    <form action="{{ url_for('react_to_complaint') }}" method="POST">
+        <input type="hidden" name="complaint_id" value="{{ complaint['complaint_id'] }}">
+        <input type="hidden" name="reaction" value="agree">
+
+        <button
+            type="submit"
+            class="{% if complaint['user_reaction'] == 'agree' %}selected{% endif %}">
+            Agree {{ complaint["agree_count"] }}
+        </button>
+    </form>
+
+    <form action="{{ url_for('react_to_complaint') }}" method="POST">
+        <input type="hidden" name="complaint_id" value="{{ complaint['complaint_id'] }}">
+        <input type="hidden" name="reaction" value="disagree">
+
+        <button
+            type="submit"
+            class="{% if complaint['user_reaction'] == 'disagree' %}selected{% endif %}">
+            Disagree {{ complaint["disagree_count"] }}
+        </button>
+    </form>
+
+</div>
+
+            </div>
+
+        </div>
+
+        {% else %}
+
+        <div class="empty-feed">
+            <p>No complaints have been submitted yet.</p>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -33,23 +33,41 @@ def get_db_connection():
 
 @app.route("/")
 def home():
+
     connection = get_db_connection()
     cursor = connection.cursor(dictionary=True)
 
     cursor.execute(
-        "SELECT * FROM announcements ORDER BY created_at DESC"
+        """
+        SELECT *
+        FROM announcements
+        WHERE expires_at IS NULL
+           OR expires_at > NOW()
+        ORDER BY created_at DESC
+        """
     )
 
     announcements = cursor.fetchall()
+
+    cursor.execute(
+        """
+        SELECT
+            COUNT(CASE WHEN status = 'Resolved' THEN 1 END) AS resolved_count,
+            COUNT(CASE WHEN status = 'Pending Review' THEN 1 END) AS pending_count
+        FROM complaints
+        """
+    )
+
+    stats = cursor.fetchone()
 
     cursor.close()
     connection.close()
 
     return render_template(
         "home.html",
-        announcements=announcements
+        announcements=announcements,
+        stats=stats
     )
-
 
 @app.route("/about")
 def about():
@@ -64,6 +82,49 @@ def faq():
 @app.route("/contact")
 def contact():
     return render_template("contact.html")
+
+
+@app.route("/suggestion-form")
+def suggestion_form():
+
+    if "student_id" not in session:
+        return redirect(url_for("verify"))
+
+    return render_template("suggestion_form.html")
+
+
+@app.route("/appreciation-form")
+def appreciation_form():
+    return render_template("appreciation_form.html")
+
+@app.route("/submit-suggestion", methods=["POST"])
+def submit_suggestion():
+    print("SUGGESTION ROUTE CALLED")
+    anonymous_id = session.get("student_id")
+
+    if not anonymous_id:
+        return redirect(url_for("verify"))
+
+    suggestion = request.form["suggestion"]
+
+    connection = get_db_connection()
+    cursor = connection.cursor()
+
+    cursor.execute(
+        """
+        INSERT INTO suggestions (anonymous_id, suggestion)
+        VALUES (%s, %s)
+        """,
+        (anonymous_id, suggestion)
+    )
+
+    connection.commit()
+
+    cursor.close()
+    connection.close()
+
+    return redirect(url_for("home"))
+
 
 @app.route("/admin-login", methods=["GET", "POST"])
 def admin_login():
@@ -216,10 +277,21 @@ def dsw_dashboard():
 
     complaints = cursor.fetchall()
 
+    cursor.execute(
+    """
+    SELECT id, message, expires_at
+    FROM announcements
+    ORDER BY created_at DESC
+    """
+)
+    announcements = cursor.fetchall()   
     cursor.close()
     connection.close()
-
-    return render_template("dsw_dashboard.html", complaints=complaints)
+    return render_template(
+    "dsw_dashboard.html",
+    complaints=complaints,
+    announcements=announcements
+)
 
 @app.route("/logout")
 def logout():
@@ -475,22 +547,134 @@ def complaint_success():
 
 @app.route("/track")
 def track():
-    return render_template("track.html")
+
+    anonymous_id = session.get("student_id")
+
+    connection = get_db_connection()
+    cursor = connection.cursor(dictionary=True)
+
+    cursor.execute("""
+    SELECT
+        c.complaint_id,
+        c.category,
+        c.description,
+        c.status,
+        c.created_at,
+        a.nickname,
+
+        (
+            SELECT COUNT(*)
+            FROM complaint_reactions r
+            WHERE r.complaint_id = c.complaint_id
+            AND r.reaction = 'agree'
+        ) AS agree_count,
+
+        (
+            SELECT COUNT(*)
+            FROM complaint_reactions r
+            WHERE r.complaint_id = c.complaint_id
+            AND r.reaction = 'disagree'
+        ) AS disagree_count,
+
+        (
+            SELECT reaction
+            FROM complaint_reactions r2
+            WHERE r2.complaint_id = c.complaint_id
+            AND r2.anonymous_id = %s
+            LIMIT 1
+        ) AS user_reaction
+
+    FROM complaints c
+
+    JOIN anonymous_students a
+        ON c.anonymous_id = a.id
+
+    ORDER BY c.created_at DESC
+""", (anonymous_id,))
+
+    complaints = cursor.fetchall()
+
+    cursor.close()
+    connection.close()
+
+    return render_template(
+        "track.html",
+        complaints=complaints
+    )
+
+
+@app.route("/react_to_complaint", methods=["POST"])
+def react_to_complaint():
+
+    anonymous_id = session.get("student_id")
+
+    if not anonymous_id:
+        return redirect(url_for("verify"))
+
+    complaint_id = request.form["complaint_id"]
+    reaction = request.form["reaction"]
+
+    connection = get_db_connection()
+    cursor = connection.cursor(dictionary=True)
+
+    # Check whether this student already reacted
+    cursor.execute("""
+        SELECT id, reaction
+        FROM complaint_reactions
+        WHERE complaint_id = %s
+        AND anonymous_id = %s
+    """, (complaint_id, anonymous_id))
+
+    existing_reaction = cursor.fetchone()
+
+    if existing_reaction:
+
+        # Change the existing reaction
+        cursor.execute("""
+            UPDATE complaint_reactions
+            SET reaction = %s
+            WHERE id = %s
+        """, (reaction, existing_reaction["id"]))
+
+    else:
+
+        # First reaction from this student
+        cursor.execute("""
+            INSERT INTO complaint_reactions
+            (complaint_id, anonymous_id, reaction)
+            VALUES (%s, %s, %s)
+        """, (complaint_id, anonymous_id, reaction))
+
+    connection.commit()
+
+    cursor.close()
+    connection.close()
+
+    return redirect(url_for("track"))
+
 
 @app.route("/add-announcement", methods=["POST"])
 def add_announcement():
-
     if "admin" not in session:
         return redirect(url_for("admin_login"))
 
     announcement = request.form["announcement"]
+    duration = int(request.form["duration"])
+
+    if duration == 0:
+        expires_at = None
+    else:
+        expires_at = datetime.now() + timedelta(days=duration)
 
     connection = get_db_connection()
     cursor = connection.cursor()
 
     cursor.execute(
-        "INSERT INTO announcements (message) VALUES (%s)",
-        (announcement,)
+        """
+        INSERT INTO announcements (message, expires_at)
+        VALUES (%s, %s)
+        """,
+        (announcement, expires_at)
     )
 
     connection.commit()
@@ -499,6 +683,33 @@ def add_announcement():
     connection.close()
 
     return redirect(url_for("dsw_dashboard"))
+
+
+@app.route("/delete-announcement/<int:announcement_id>", methods=["POST"])
+def delete_announcement(announcement_id):
+
+    if "admin" not in session:
+        return redirect(url_for("admin_login"))
+
+    connection = get_db_connection()
+    cursor = connection.cursor()
+
+    cursor.execute(
+        """
+        DELETE FROM announcements
+        WHERE id = %s
+        """,
+        (announcement_id,)
+    )
+
+    connection.commit()
+
+    cursor.close()
+    connection.close()
+
+    return redirect(url_for("dsw_dashboard"))
+
+
 
 @app.route("/dsw-complaint/<complaint_id>")
 def view_complaint(complaint_id):
@@ -509,13 +720,33 @@ def view_complaint(complaint_id):
     cursor = connection.cursor(dictionary=True)
 
     cursor.execute(
-        """
-        SELECT complaint_id, category, description, status, created_at
-        FROM complaints
-        WHERE complaint_id = %s
-        """,
-        (complaint_id,)
-    )
+    """
+    SELECT
+        c.complaint_id,
+        c.category,
+        c.description,
+        c.status,
+        c.created_at,
+
+        (
+            SELECT COUNT(*)
+            FROM complaint_reactions r
+            WHERE r.complaint_id = c.complaint_id
+            AND r.reaction = 'agree'
+        ) AS agree_count,
+
+        (
+            SELECT COUNT(*)
+            FROM complaint_reactions r
+            WHERE r.complaint_id = c.complaint_id
+            AND r.reaction = 'disagree'
+        ) AS disagree_count
+
+    FROM complaints c
+    WHERE c.complaint_id = %s
+    """,
+    (complaint_id,)
+)
 
     complaint = cursor.fetchone()
 
