@@ -18,7 +18,7 @@
                 <p class="dashboard-label">DIRECTOR OF STUDENT WELFARE</p>
                 <h2>DSW Dashboard</h2>
                 <p class="dashboard-subtitle">
-                    Review student concerns, manage complaints, and keep students informed.
+                    Review student concerns, manage complaints and keep students informed.
                 </p>
             </div>
         </div>
@@ -36,7 +36,7 @@
 
             </a>
 
-            <a href="#" class="dashboard-action">
+            <a href="{{ url_for('dsw_suggestions') }}" class="dashboard-action">
                 <div class="action-icon"></div>
                 <div>
                     <h3>Suggestions</h3>
@@ -44,7 +44,7 @@
                 </div>
             </a>
 
-            <a href="#" class="dashboard-action">
+            <a href="{{ url_for('dsw_appreciations') }}" class="dashboard-action">
                 <div class="action-icon"></div>
                 <div>
                     <h3>Appreciation</h3>

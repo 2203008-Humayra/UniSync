@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Appreciation Form - UniSync{% endblock %}
+
+{% block styles %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/complaint.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="complaint-container">
+    <div class="complaint-card">
+
+
+    <div class="complaint-header">
+        <p class="complaint-label">UNISYNC</p>
+        <h2>Share Your Appreciation</h2>
+        <p>
+            Recognize the people who make a positive difference
+            in your university experience.
+        </p>
+    </div>
+
+    <form method="POST" action="{{ url_for('submit_appreciation') }}">
+        <div class="form-group">
+            <label for="appreciation">Your Appreciation</label>
+
+            <textarea
+                id="appreciation"
+                name="appreciation"
+                rows="7"
+                placeholder="Share your appreciation..."
+                required
+            ></textarea>
+        </div>
+
+        <button type="submit">Submit Appreciation</button>
+    </form>
+
+</div>
+
+</div>
+
+{% endblock %}

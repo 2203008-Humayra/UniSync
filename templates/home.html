@@ -131,49 +131,58 @@ UniSync | Anonymous Student Feedback & Complaint System
 
 <!-- ================= CATEGORIES ================= -->
 
+<!-- ================= CATEGORIES ================= -->
 <section class="categories">
 
     <h2>Complaint Categories</h2>
 
-    <div class="category-card">
-    <i class="fa-solid fa-graduation-cap"></i>
-    <h3>Academic</h3>
-</div>
+    <a href="{{ url_for('verify', type='complaint', category='Academic') }}"
+       class="category-card">
+        <i class="fa-solid fa-graduation-cap"></i>
+        <h3>Academic</h3>
+    </a>
 
-<div class="category-card">
-    <i class="fa-solid fa-building"></i>
-    <h3>Hostel</h3>
-</div>
+    <a href="{{ url_for('verify', type='complaint', category='Hostel') }}"
+       class="category-card">
+        <i class="fa-solid fa-building"></i>
+        <h3>Hostel</h3>
+    </a>
 
-<div class="category-card">
-    <i class="fa-solid fa-money-check-dollar"></i>
-    <h3>Payments</h3>
-</div>
+    <a href="{{ url_for('verify', type='complaint', category='Payments') }}"
+       class="category-card">
+        <i class="fa-solid fa-money-check-dollar"></i>
+        <h3>Payments</h3>
+    </a>
 
-<div class="category-card">
-    <i class="fa-solid fa-bus"></i>
-    <h3>Transport</h3>
-</div>
+    <a href="{{ url_for('verify', type='complaint', category='Transport') }}"
+       class="category-card">
+        <i class="fa-solid fa-bus"></i>
+        <h3>Transport</h3>
+    </a>
 
-<div class="category-card">
-    <i class="fa-solid fa-utensils"></i>
-    <h3>Food</h3>
-</div>
+    <a href="{{ url_for('verify', type='complaint', category='Food') }}"
+       class="category-card">
+        <i class="fa-solid fa-utensils"></i>
+        <h3>Food</h3>
+    </a>
 
-<div class="category-card">
-    <i class="fa-solid fa-wifi"></i>
-    <h3>Internet & IT</h3>
-</div>
+    <a href="{{ url_for('verify', type='complaint', category='Internet & IT') }}"
+       class="category-card">
+        <i class="fa-solid fa-wifi"></i>
+        <h3>Internet & IT</h3>
+    </a>
 
-<div class="category-card">
-    <i class="fa-solid fa-shield-halved"></i>
-    <h3>Security</h3>
-</div>
+    <a href="{{ url_for('verify', type='complaint', category='Security') }}"
+       class="category-card">
+        <i class="fa-solid fa-shield-halved"></i>
+        <h3>Security</h3>
+    </a>
 
-<div class="category-card">
-    <i class="fa-solid fa-layer-group"></i>
-    <h3>Others</h3>
-</div>
+    <a href="{{ url_for('verify', type='complaint', category='Other') }}"
+       class="category-card">
+        <i class="fa-solid fa-layer-group"></i>
+        <h3>Others</h3>
+    </a>
 
 </section>
 
@@ -187,12 +196,7 @@ UniSync | Anonymous Student Feedback & Complaint System
     </div>
 
     <div class="stat-box">
-        <h2>{{ stats.pending_count }}</h2>
-        <p>Pending Cases</p>
-    </div>
-
-    <div class="stat-box">
-        <h2>45</h2>
+        <h2>{{ stats.suggestions_count }}</h2>
         <p>Suggestions Received</p>
     </div>
 

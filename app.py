@@ -33,32 +33,31 @@ def get_db_connection():
 
 @app.route("/")
 def home():
-
     connection = get_db_connection()
     cursor = connection.cursor(dictionary=True)
 
-    cursor.execute(
-        """
+    cursor.execute("""
         SELECT *
         FROM announcements
         WHERE expires_at IS NULL
            OR expires_at > NOW()
         ORDER BY created_at DESC
-        """
-    )
-
+    """)
     announcements = cursor.fetchall()
 
-    cursor.execute(
-        """
+    cursor.execute("""
         SELECT
             COUNT(CASE WHEN status = 'Resolved' THEN 1 END) AS resolved_count,
             COUNT(CASE WHEN status = 'Pending Review' THEN 1 END) AS pending_count
         FROM complaints
-        """
-    )
-
+    """)
     stats = cursor.fetchone()
+
+    cursor.execute("""
+        SELECT COUNT(*) AS suggestions_count
+        FROM suggestions
+    """)
+    stats["suggestions_count"] = cursor.fetchone()["suggestions_count"]
 
     cursor.close()
     connection.close()
@@ -68,6 +67,7 @@ def home():
         announcements=announcements,
         stats=stats
     )
+
 
 @app.route("/about")
 def about():
@@ -116,6 +116,38 @@ def submit_suggestion():
         VALUES (%s, %s)
         """,
         (anonymous_id, suggestion)
+    )
+
+    connection.commit()
+
+    cursor.close()
+    connection.close()
+
+    return redirect(url_for("home"))
+
+
+@app.route("/submit-appreciation", methods=["POST"])
+def submit_appreciation():
+
+    anonymous_id = session.get("student_id")
+
+    if not anonymous_id:
+        return redirect(url_for("verify", type="appreciation"))
+
+    appreciation = request.form.get("appreciation", "").strip()
+
+    if not appreciation:
+        return redirect(url_for("appreciation_form"))
+
+    connection = get_db_connection()
+    cursor = connection.cursor()
+
+    cursor.execute(
+        """
+        INSERT INTO appreciations (anonymous_id, appreciation)
+        VALUES (%s, %s)
+        """,
+        (anonymous_id, appreciation)
     )
 
     connection.commit()
@@ -293,6 +325,55 @@ def dsw_dashboard():
     announcements=announcements
 )
 
+@app.route("/dsw-suggestions")
+def dsw_suggestions():
+    if "admin" not in session:
+        return redirect(url_for("admin_login"))
+
+    connection = get_db_connection()
+    cursor = connection.cursor(dictionary=True)
+
+    cursor.execute("""
+        SELECT suggestion_id, suggestion, created_at
+        FROM suggestions
+        ORDER BY created_at DESC
+    """)
+
+    suggestions = cursor.fetchall()
+
+    cursor.close()
+    connection.close()
+
+    return render_template(
+        "dsw_suggestions.html",
+        suggestions=suggestions
+    )
+
+@app.route("/dsw-appreciations")
+def dsw_appreciations():
+    if "admin" not in session:
+        return redirect(url_for("admin_login"))
+
+    connection = get_db_connection()
+    cursor = connection.cursor(dictionary=True)
+
+    cursor.execute("""
+        SELECT appreciation_id, appreciation, created_at
+        FROM appreciations
+        ORDER BY created_at DESC
+    """)
+
+    appreciations = cursor.fetchall()
+
+    cursor.close()
+    connection.close()
+
+    return render_template(
+        "dsw_appreciations.html",
+        appreciations=appreciations
+    )
+
+
 @app.route("/logout")
 def logout():
     session.pop("admin", None)
@@ -300,8 +381,10 @@ def logout():
 
 @app.route("/verify", methods=["GET", "POST"])
 def verify():
+
     if request.method == "POST":
         email = request.form["email"].strip().lower()
+
         print("EMAIL RECEIVED:", repr(email))
 
         if not email.endswith("@student.ruet.ac.bd"):
@@ -338,10 +421,35 @@ def verify():
             return redirect(url_for("student_login"))
 
         print("NEW STUDENT")
-
         session["identity_token"] = identity_token
 
         return redirect(url_for("create_identity"))
+
+    # Remember the selected form and category
+    form_type = request.args.get("type")
+
+    if form_type == "appreciation":
+        session["next_form"] = "appreciation_form"
+        session.pop("selected_category", None)
+
+    elif form_type == "suggestion":
+        session["next_form"] = "suggestion_form"
+        session.pop("selected_category", None)
+
+    else:
+        session["next_form"] = "complaint_form"
+
+        category = request.args.get("category")
+
+        valid_categories = [
+            "Academic", "Hostel", "Payments", "Transport",
+            "Food", "Internet & IT", "Security", "Other"
+        ]
+
+        if category in valid_categories:
+            session["selected_category"] = category
+        else:
+            session.pop("selected_category", None)
 
     return render_template("verify.html")
 
@@ -386,7 +494,8 @@ def student_login():
         session["student_id"] = student["id"]
         session["student_nickname"] = student["nickname"]
 
-        return redirect(url_for("complaint_form"))
+        next_form = session.pop("next_form", "complaint_form")
+        return redirect(url_for(next_form))
 
     return render_template("student_login.html")
 
@@ -497,13 +606,19 @@ def create_identity():
         session["student_id"] = student_id
         session["student_nickname"] = nickname
 
-        return redirect(url_for("complaint_form"))
+        next_form = session.pop("next_form", "complaint_form")
+        return redirect(url_for(next_form))
 
     return render_template("create_identity.html")
 
 @app.route("/complaint-form")
 def complaint_form():
-    return render_template("complaint_form.html")
+    selected_category = session.pop("selected_category", None)
+
+    return render_template(
+        "complaint_form.html",
+        selected_category=selected_category
+    )
 
 
 @app.route("/submit-complaint", methods=["POST"])
