@@ -1,0 +1,227 @@
+{% extends "base.html" %}
+
+{% block title %}Contact DSW | UniSync{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/contact.css') }}">
+
+<div class="contact-container">
+
+    <!-- Page Header -->
+    <div class="contact-header">
+        <div class="contact-header-content">
+            <p class="contact-label">DIRECTORATE OF STUDENTS' WELFARE</p>
+            <h1>Contact Information</h1>
+            <p class="contact-subtitle">
+                Get in touch with the Directorate of Students' Welfare
+                for assistance, inquiries and student-related concerns.
+            </p>
+        </div>
+    </div>
+
+    <!-- Director Information -->
+    <section class="director-section">
+
+        <div class="section-heading">
+            <h2>Meet the Director</h2>
+            <p>Directorate of Students' Welfare, RUET</p>
+        </div>
+
+        <div class="director-card">
+
+            <div class="director-header">
+                <div class="director-name">
+                    <h2>Dr. Md. Rabiul Islam Sarker</h2>
+                    <p>Professor & Director of Students' Welfare</p>
+                    <span>
+                        Department of Mechanical Engineering
+                    </span>
+                </div>
+            </div>
+
+            <div class="director-details">
+
+                <div class="contact-item">
+                    <span>OFFICE LOCATION</span>
+                    <p>Heat Engine Lab, Ground Floor</p>
+                </div>
+
+                <div class="contact-item">
+                    <span>PHONE NUMBER</span>
+                    <p>
+                        <a href="tel:+8801725308914">
+                            880-1725308914
+                        </a>
+                    </p>
+                </div>
+
+                <div class="contact-item">
+                    <span>PABX</span>
+                    <p>239</p>
+                </div>
+
+                <div class="contact-item">
+                    <span>OFFICIAL EMAIL</span>
+                    <p>
+                        <a href="mailto:dsw@ruet.ac.bd">
+                            dsw@ruet.ac.bd
+                        </a>
+                    </p>
+                </div>
+
+                <div class="contact-item">
+                    <span>ADDITIONAL EMAIL</span>
+                    <p>
+                        <a href="mailto:islamrabiul@yahoo.com">
+                            islamrabiul@yahoo.com
+                        </a>
+                    </p>
+                </div>
+
+                <div class="contact-item">
+                    <span>INSTITUTIONAL EMAIL</span>
+                    <p>
+                        <a href="mailto:islamrabiul@me.ruet.ac.bd">
+                            islamrabiul@me.ruet.ac.bd
+                        </a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Profile -->
+    <section class="profile-section">
+
+        <div class="section-heading">
+            <h2>Professional Profile</h2>
+            <p>Academic background and professional achievements</p>
+        </div>
+
+        <div class="profile-card">
+
+            <p>
+                Dr. Md. Rabiul Islam Sarker has been engaged in
+                teaching at the Faculty of Mechanical Engineering
+                since 2006. He completed his undergraduate and
+                postgraduate studies at RUET and earned his PhD
+                from the University of Adelaide, Australia, in 2015.
+            </p>
+
+            <p>
+                Throughout his academic career, he has served as
+                Lecturer, Assistant Professor, Associate Professor,
+                and Professor. His teaching experience includes
+                undergraduate and postgraduate courses in
+                Thermodynamics, Fluid Mechanics, Renewable Energy
+                Engineering, Heat Transfer, and other areas of
+                Mechanical Engineering.
+            </p>
+
+            <p>
+                He contributed to a Higher Education Quality
+                Enhancement Project (HEQEP), funded by the World
+                Bank and the Government of Bangladesh through the
+                University Grants Commission.
+            </p>
+
+            <div class="profile-highlights">
+
+                <div class="highlight-item">
+                    <h3>2007</h3>
+                    <p>Joined RUET</p>
+                </div>
+
+                <div class="highlight-item">
+                    <h3>2015</h3>
+                    <p>PhD Completed</p>
+                </div>
+
+                <div class="highlight-item">
+                    <h3>26</h3>
+                    <p>Journal Publications</p>
+                </div>
+
+                <div class="highlight-item">
+                    <h3>25</h3>
+                    <p>Conference Papers</p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Education and Research -->
+    <section class="academic-section">
+
+        <div class="academic-card">
+
+            <h2>Educational Qualifications</h2>
+
+            <div class="academic-item">
+                <h3>PhD</h3>
+                <p>The University of Adelaide, Australia — 2015</p>
+            </div>
+
+            <div class="academic-item">
+                <h3>MSc Engineering (ME)</h3>
+                <p>RUET — 2009</p>
+            </div>
+
+            <div class="academic-item">
+                <h3>BSc Engineering (ME)</h3>
+                <p>RUET — 2004</p>
+            </div>
+
+        </div>
+
+        <div class="academic-card">
+
+            <h2>Research Interests</h2>
+
+            <div class="research-tags">
+                <span>Thermofluid</span>
+                <span>Renewable Energy</span>
+                <span>Heat Transfer</span>
+            </div>
+
+            <p>
+                His research focuses on solar thermal energy
+                applications, including water heating, steam
+                production, drying, and desalination.
+            </p>
+
+            <a href="https://scholar.google.com/citations?user=B44rt2YAAAAJ"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="scholar-link">
+                View Google Scholar Profile
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- Contact Call to Action -->
+    <section class="contact-bottom">
+
+        <h2>Need Assistance?</h2>
+
+        <p>
+            For student welfare-related inquiries and assistance,
+            contact the Directorate of Students' Welfare.
+        </p>
+
+        <a href="mailto:dsw@ruet.ac.bd">
+            Contact DSW Office
+        </a>
+
+    </section>
+
+</div>
+
+{% endblock %}

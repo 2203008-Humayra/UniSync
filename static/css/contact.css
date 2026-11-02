@@ -1,0 +1,381 @@
+/* Contact Page */
+
+.contact-container {
+    min-height: calc(100vh - 80px);
+    margin-top: 80px;
+    padding: 45px 30px 70px;
+    background: #f4f7fb;
+    font-family: inherit;
+}
+
+/* Page Header */
+
+.contact-header {
+    max-width: 1100px;
+    margin: 0 auto 45px;
+    padding: 45px;
+    background: linear-gradient(115deg, #0F2348, #1b3765);
+    border-radius: 16px;
+    color: #ffffff;
+    box-shadow: 0 12px 30px rgba(15, 35, 72, 0.12);
+}
+
+.contact-label {
+    margin: 0 0 10px;
+    color: #b9c7dc;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.contact-header h1 {
+    margin: 0 0 10px;
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.contact-subtitle {
+    max-width: 650px;
+    margin: 0;
+    color: #d9e1ed;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+/* Sections */
+
+.director-section,
+.profile-section {
+    max-width: 1100px;
+    margin: 0 auto 40px;
+}
+
+.section-heading {
+    margin-bottom: 18px;
+}
+
+.section-heading h2 {
+    margin: 0 0 5px;
+    color: #0F2348;
+    font-size: 23px;
+}
+
+.section-heading p {
+    margin: 0;
+    color: #777;
+    font-size: 14px;
+}
+
+/* Director Card */
+
+.director-card {
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid #e3e8ef;
+    border-radius: 14px;
+    box-shadow: 0 12px 35px rgba(15, 35, 72, 0.08);
+    overflow: hidden;
+}
+
+.director-header {
+    padding: 30px 35px;
+    background: linear-gradient(
+        110deg,
+        rgba(15, 35, 72, 0.07),
+        rgba(15, 35, 72, 0.015)
+    );
+    border-bottom: 1px solid #e8edf3;
+}
+
+.director-name h2 {
+    margin: 0 0 5px;
+    color: #0F2348;
+    font-size: 25px;
+}
+
+.director-name p {
+    margin: 0 0 5px;
+    color: #405575;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.director-name span {
+    color: #777;
+    font-size: 13px;
+}
+
+.director-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 30px 35px;
+}
+
+.contact-item {
+    padding: 17px 19px;
+    background: rgba(244, 247, 251, 0.85);
+    border: 1px solid #e3e8ef;
+    border-radius: 9px;
+    transition: 0.2s ease;
+}
+
+.contact-item:hover {
+    border-color: #0F2348;
+    background: #ffffff;
+    box-shadow: 0 5px 15px rgba(15, 35, 72, 0.06);
+}
+
+.contact-item span {
+    display: block;
+    margin-bottom: 6px;
+    color: #78869a;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.contact-item p {
+    margin: 0;
+    color: #253954;
+    font-size: 14px;
+    overflow-wrap: anywhere;
+}
+
+.contact-item a {
+    color: #0F2348;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.contact-item a:hover {
+    text-decoration: underline;
+}
+
+/* Professional Profile */
+
+.profile-card {
+    padding: 32px 35px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid #e3e8ef;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(15, 35, 72, 0.06);
+}
+
+.profile-card > p {
+    margin: 0 0 15px;
+    color: #626b78;
+    font-size: 14px;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+.profile-highlights {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-top: 28px;
+}
+
+.highlight-item {
+    padding: 20px 12px;
+    background: #0F2348;
+    border-radius: 9px;
+    text-align: center;
+    transition: 0.2s ease;
+}
+
+.highlight-item:hover {
+    background: #081629;
+    transform: translateY(-3px);
+}
+
+.highlight-item h3 {
+    margin: 0 0 5px;
+    color: #ffffff;
+    font-size: 25px;
+}
+
+.highlight-item p {
+    margin: 0;
+    color: #d9e1ed;
+    font-size: 12px;
+}
+
+/* Education and Research */
+
+.academic-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto 40px;
+}
+
+.academic-card {
+    padding: 28px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid #e3e8ef;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(15, 35, 72, 0.06);
+}
+
+.academic-card h2 {
+    margin: 0 0 22px;
+    color: #0F2348;
+    font-size: 21px;
+}
+
+.academic-item {
+    margin-bottom: 20px;
+    padding-left: 15px;
+    border-left: 3px solid #0F2348;
+}
+
+.academic-item h3 {
+    margin: 0 0 5px;
+    color: #253954;
+    font-size: 14px;
+}
+
+.academic-item p {
+    margin: 0;
+    color: #777;
+    font-size: 13px;
+}
+
+.research-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.research-tags span {
+    padding: 8px 14px;
+    background: #edf1f7;
+    color: #0F2348;
+    border: 1px solid #dce3ed;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.academic-card > p {
+    margin: 0 0 20px;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.scholar-link {
+    display: inline-block;
+    color: #0F2348;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.scholar-link:hover {
+    text-decoration: underline;
+}
+
+/* Contact Bottom */
+
+.contact-bottom {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 35px;
+    background: #0F2348;
+    border-radius: 14px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.contact-bottom h2 {
+    margin: 0 0 10px;
+    color: #ffffff;
+    font-size: 24px;
+}
+
+.contact-bottom p {
+    max-width: 600px;
+    margin: 0 auto 20px;
+    color: #d9e1ed;
+    font-size: 14px;
+}
+
+.contact-bottom a {
+    display: inline-block;
+    padding: 11px 24px;
+    background: #ffffff;
+    border: 2px solid #ffffff;
+    border-radius: 30px;
+    color: #0F2348;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.contact-bottom a:hover {
+    background: transparent;
+    color: #ffffff;
+}
+
+/* Responsive */
+
+@media (max-width: 800px) {
+
+    .academic-section {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-highlights {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+
+    .contact-container {
+        padding: 30px 15px 50px;
+    }
+
+    .contact-header {
+        padding: 30px 25px;
+    }
+
+    .contact-header h1 {
+        font-size: 27px;
+    }
+
+    .director-header {
+        padding: 25px 22px;
+    }
+
+    .director-name h2 {
+        font-size: 21px;
+    }
+
+    .director-details {
+        grid-template-columns: 1fr;
+        padding: 22px;
+    }
+
+    .profile-card {
+        padding: 23px;
+    }
+
+    .profile-highlights {
+        gap: 10px;
+    }
+
+    .academic-card {
+        padding: 23px;
+    }
+
+    .contact-bottom {
+        padding: 30px 20px;
+    }
+}

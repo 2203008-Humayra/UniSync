@@ -1,0 +1,351 @@
+{% extends "base.html" %}
+
+{% block title %}FAQs | UniSync{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/faq.css') }}">
+
+<div class="faq-page">
+
+    <!-- HERO SECTION -->
+    <section class="faq-hero">
+
+        <div class="faq-hero-content">
+
+            <p class="section-label">HELP & SUPPORT</p>
+
+            <h1>Frequently Asked Questions</h1>
+
+            <p class="hero-text">
+                New to UniSync? Find answers to common questions about
+                submitting complaints, protecting your identity, tracking
+                submissions and using the platform.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- FAQ SECTION -->
+    <section class="faq-section">
+
+        <div class="faq-container">
+
+            <div class="faq-intro">
+                <p class="faq-label">QUICK HELP</p>
+                <h2>How Can We Help You?</h2>
+                <p>
+                    Explore the questions below to understand how
+                    UniSync works and how you can make the most of it.
+                </p>
+            </div>
+
+
+            <!-- GETTING STARTED -->
+            <div class="faq-category">
+
+                <div class="category-heading">
+                    <span class="category-number">01</span>
+                    <div>
+                        <h3>Getting Started</h3>
+                        <p>Understanding the platform and creating an identity.</p>
+                    </div>
+                </div>
+
+                <div class="faq-list">
+
+                    <details class="faq-item">
+                        <summary>What is UniSync?</summary>
+                        <div class="faq-answer">
+                            <p>
+                                UniSync is a student feedback and complaint
+                                platform designed for RUET students. It
+                                provides a convenient way to communicate
+                                concerns, share suggestions and express
+                                appreciation to the Directorate of Students'
+                                Welfare.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Who can use UniSync?</summary>
+                        <div class="faq-answer">
+                            <p>
+                                UniSync is intended for students of Rajshahi
+                                University of Engineering & Technology (RUET).
+                                Students must use a valid RUET student email
+                                address to complete the verification process.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>How do I get started?</summary>
+                        <div class="faq-answer">
+                            <p>
+                                Visit the platform and choose the service
+                                you want to use, such as submitting a complaint,
+                                suggestion or appreciation. You will be
+                                guided through the student verification
+                                process before accessing the submission form.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Why do I need to verify my student identity?</summary>
+                        <div class="faq-answer">
+                            <p>
+                                Verification ensures that the platform is
+                                being used by eligible RUET students.
+                                It helps maintain the reliability of
+                                submissions while keeping the identity
+                                separate from publicly displayed feedback.
+                            </p>
+                        </div>
+                    </details>
+
+                </div>
+            </div>
+
+
+            <!-- COMPLAINTS -->
+            <div class="faq-category">
+
+                <div class="category-heading">
+                    <span class="category-number">02</span>
+                    <div>
+                        <h3>Complaints & Tracking</h3>
+                        <p>Submitting concerns and following their progress.</p>
+                    </div>
+                </div>
+
+                <div class="faq-list">
+
+                    <details class="faq-item">
+                        <summary>How can I submit a complaint?</summary>
+                        <div class="faq-answer">
+                            <p>
+                                Select the complaint option from the homepage.
+                                Complete the student verification process
+                                if required, then describe your concern
+                                clearly in the complaint form and submit it.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Will my complaint be anonymous?</summary>
+                        <div class="faq-answer">
+                            <p>
+                                Yes. Complaints are presented through an
+                                anonymous student identity rather than
+                                displaying your name or student email.
+                                Verification is used to establish student
+                                eligibility, while your personal identity
+                                is kept separate from the complaint display.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Can I submit more than one complaint?</summary>
+                        <div class="faq-answer">
+                            <p>
+                                Yes. You can submit separate complaints
+                                for different concerns. Make sure each
+                                submission describes a distinct issue
+                                clearly to help the authorities review it.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>How can I track my complaint?</summary>
+                        <div class="faq-answer">
+                            <p>
+                                Visit the complaint tracking section and
+                                provide your complaint information as
+                                requested. You can check the current status
+                                of your submitted complaint there.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>What do the complaint statuses mean?</summary>
+                        <div class="faq-answer">
+                            <p>
+                                <strong>Pending:</strong> The complaint
+                                has been received and is awaiting review.
+                            </p>
+                            <p>
+                                <strong>Under Investigation:</strong>
+                                The complaint is being examined by the
+                                responsible authority.
+                            </p>
+                            <p>
+                                <strong>Resolved:</strong> The complaint
+                                has been addressed and marked as resolved.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Can I react to a complaint?</summary>
+                        <div class="faq-answer">
+                            <p>
+                                Yes. UniSync allows students to express
+                                agreement or disagreement with available
+                                complaints through the reaction feature.
+                                This helps highlight concerns shared
+                                by multiple students.
+                            </p>
+                        </div>
+                    </details>
+
+                </div>
+            </div>
+
+
+            <!-- PRIVACY -->
+            <div class="faq-category">
+
+                <div class="category-heading">
+                    <span class="category-number">03</span>
+                    <div>
+                        <h3>Privacy & Security</h3>
+                        <p>Understanding anonymity and responsible usage.</p>
+                    </div>
+                </div>
+
+                <div class="faq-list">
+
+                    <details class="faq-item">
+                        <summary>Will other students see my identity?</summary>
+                        <div class="faq-answer">
+                            <p>
+                                No. Your name and student email are not
+                                displayed alongside your complaint.
+                                Submissions are presented anonymously
+                                to other students.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Is my student email displayed with my complaint?</summary>
+                        <div class="faq-answer">
+                            <p>
+                                No. Your student email is used for
+                                verification and is not displayed
+                                publicly with your submitted feedback.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Can I submit false or inappropriate complaints?</summary>
+                        <div class="faq-answer">
+                            <p>
+                                UniSync encourages responsible and
+                                constructive feedback. Students should
+                                provide accurate information and avoid
+                                offensive language, harassment or
+                                deliberately misleading submissions.
+                            </p>
+                        </div>
+                    </details>
+
+                </div>
+            </div>
+
+
+            <!-- OTHER SERVICES -->
+            <div class="faq-category">
+
+                <div class="category-heading">
+                    <span class="category-number">04</span>
+                    <div>
+                        <h3>Other Services</h3>
+                        <p>Suggestions, appreciation and additional assistance.</p>
+                    </div>
+                </div>
+
+                <div class="faq-list">
+
+                    <details class="faq-item">
+                        <summary>Can I submit suggestions through UniSync?</summary>
+                        <div class="faq-answer">
+                            <p>
+                                Yes. The suggestion feature allows you to
+                                share ideas and recommendations that could
+                                improve student welfare and university life.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Can I express appreciation to the university?</summary>
+                        <div class="faq-answer">
+                            <p>
+                                Yes. You can use the appreciation feature
+                                to acknowledge positive experiences,
+                                initiatives or contributions that have
+                                made a difference in student life.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>How can I contact the Directorate of Students' Welfare?</summary>
+                        <div class="faq-answer">
+                            <p>
+                                You can find the Director's contact
+                                information, office location, phone number
+                                and official email address on our
+                                Contact page.
+                            </p>
+                            <a href="{{ url_for('contact') }}" class="inline-link">
+                                Visit Contact Page
+                            </a>
+                        </div>
+                    </details>
+
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT CTA -->
+    <section class="faq-contact">
+
+        <div class="faq-contact-content">
+
+            <p class="section-label">STILL HAVE QUESTIONS?</p>
+
+            <h2>We're Here to Help</h2>
+
+            <p>
+                If you couldn't find the answer you were looking for,
+                reach out to the Directorate of Students' Welfare.
+            </p>
+
+            <a href="{{ url_for('contact') }}" class="faq-contact-btn">
+                Contact Us
+            </a>
+
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}
