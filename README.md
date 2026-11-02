@@ -217,4 +217,4 @@ Stores project images and assets.
 
 # Project Status
 
-🚧 Currently Under Development
+🚧 Completed
