@@ -49,6 +49,7 @@ def get_db_connection():
 
 
 def initialize_database():
+
     connection = get_db_connection()
     cursor = connection.cursor()
 
@@ -61,6 +62,7 @@ def initialize_database():
             expires_at DATETIME DEFAULT NULL
         )
         """,
+
         """
         CREATE TABLE IF NOT EXISTS anonymous_students (
             id INT AUTO_INCREMENT PRIMARY KEY,
@@ -70,6 +72,7 @@ def initialize_database():
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP
         )
         """,
+
         """
         CREATE TABLE IF NOT EXISTS appreciations (
             appreciation_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -81,6 +84,7 @@ def initialize_database():
                 ON DELETE SET NULL
         )
         """,
+
         """
         CREATE TABLE IF NOT EXISTS complaints (
             complaint_id VARCHAR(20) PRIMARY KEY,
@@ -93,6 +97,7 @@ def initialize_database():
                 ON UPDATE CURRENT_TIMESTAMP
         )
         """,
+
         """
         CREATE TABLE IF NOT EXISTS complaint_reactions (
             id INT AUTO_INCREMENT PRIMARY KEY,
@@ -106,6 +111,7 @@ def initialize_database():
                 ON DELETE CASCADE
         )
         """,
+
         """
         CREATE TABLE IF NOT EXISTS dsw (
             username VARCHAR(50) PRIMARY KEY,
@@ -115,6 +121,7 @@ def initialize_database():
             reset_token_expiry DATETIME DEFAULT NULL
         )
         """,
+
         """
         CREATE TABLE IF NOT EXISTS suggestions (
             suggestion_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -131,11 +138,25 @@ def initialize_database():
     for table in tables:
         cursor.execute(table)
 
+    # Create the initial DSW admin account if it does not exist
+    cursor.execute(
+        """
+        INSERT IGNORE INTO dsw (username, email, password)
+        VALUES (%s, %s, %s)
+        """,
+        (
+            "admin",
+            "dsw@ruet.ac.bd",
+            generate_password_hash("12345")
+        )
+    )
+
     connection.commit()
     cursor.close()
     connection.close()
 
-initialize_database()    
+
+initialize_database()
 
 @app.route("/")
 def home():
