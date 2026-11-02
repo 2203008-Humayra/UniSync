@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
+from urllib.parse import urlparse, unquote
 import mysql.connector
 import secrets
 import hmac
@@ -22,12 +23,27 @@ def generate_identity_token(email):
     ).hexdigest()
 
 def get_db_connection():
-    connection = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="",
-        database="unisync"
-    )
+    database_url = os.getenv("DATABASE_URL")
+
+    if database_url:
+        parsed = urlparse(database_url)
+
+        connection = mysql.connector.connect(
+            host=parsed.hostname,
+            user=unquote(parsed.username),
+            password=unquote(parsed.password),
+            database=parsed.path.lstrip("/"),
+            port=parsed.port or 3306
+        )
+
+    else:
+        connection = mysql.connector.connect(
+            host=os.getenv("DB_HOST", "localhost"),
+            user=os.getenv("DB_USER", "root"),
+            password=os.getenv("DB_PASSWORD", ""),
+            database=os.getenv("DB_NAME", "unisync"),
+            port=int(os.getenv("DB_PORT", 3306))
+        )
 
     return connection
 
