@@ -45,7 +45,12 @@ def get_db_connection():
             port=int(os.getenv("DB_PORT", 3306))
         )
 
-    return connection
+        # Set database session timezone to Bangladesh (UTC+6)
+        cursor = connection.cursor()
+        cursor.execute("SET time_zone = '+06:00'")
+        cursor.close()
+
+        return connection
 
 
 def initialize_database():
