@@ -47,6 +47,96 @@ def get_db_connection():
 
     return connection
 
+
+def initialize_database():
+    connection = get_db_connection()
+    cursor = connection.cursor()
+
+    tables = [
+        """
+        CREATE TABLE IF NOT EXISTS announcements (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            message VARCHAR(255) NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            expires_at DATETIME DEFAULT NULL
+        )
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS anonymous_students (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            identity_token VARCHAR(64) NOT NULL UNIQUE,
+            nickname VARCHAR(50) NOT NULL UNIQUE,
+            pin_hash VARCHAR(255) NOT NULL,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        )
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS appreciations (
+            appreciation_id INT AUTO_INCREMENT PRIMARY KEY,
+            anonymous_id INT DEFAULT NULL,
+            appreciation TEXT NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (anonymous_id)
+                REFERENCES anonymous_students(id)
+                ON DELETE SET NULL
+        )
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS complaints (
+            complaint_id VARCHAR(20) PRIMARY KEY,
+            anonymous_id INT DEFAULT NULL,
+            category VARCHAR(100) NOT NULL,
+            description TEXT NOT NULL,
+            status VARCHAR(50) NOT NULL DEFAULT 'Pending Review',
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                ON UPDATE CURRENT_TIMESTAMP
+        )
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS complaint_reactions (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            complaint_id VARCHAR(50) NOT NULL,
+            anonymous_id INT NOT NULL,
+            reaction ENUM('agree', 'disagree') NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            UNIQUE KEY unique_reaction (complaint_id, anonymous_id),
+            FOREIGN KEY (complaint_id)
+                REFERENCES complaints(complaint_id)
+                ON DELETE CASCADE
+        )
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS dsw (
+            username VARCHAR(50) PRIMARY KEY,
+            email VARCHAR(100) NOT NULL UNIQUE,
+            password VARCHAR(255) NOT NULL,
+            reset_token VARCHAR(255) DEFAULT NULL,
+            reset_token_expiry DATETIME DEFAULT NULL
+        )
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS suggestions (
+            suggestion_id INT AUTO_INCREMENT PRIMARY KEY,
+            anonymous_id INT NOT NULL,
+            suggestion TEXT NOT NULL,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (anonymous_id)
+                REFERENCES anonymous_students(id)
+                ON DELETE CASCADE
+        )
+        """
+    ]
+
+    for table in tables:
+        cursor.execute(table)
+
+    connection.commit()
+    cursor.close()
+    connection.close()
+
+initialize_database()    
+
 @app.route("/")
 def home():
     connection = get_db_connection()
